@@ -1,0 +1,19 @@
+﻿@page "/"
+@inject IJSRuntime js
+
+<div class="m-0 p-0">
+    <input type="file" name="load" id=@inputId>
+    <canvas id=@id class="vw-100"></canvas>
+</div>
+
+@code  {
+
+    string id = "three-container";
+    string inputId = "file-input";
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        await js.InvokeVoidAsync("ifcfunctions.load", id, inputId);
+    }
+
+}
